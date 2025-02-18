@@ -38,13 +38,13 @@ function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode
             onePointer = onePointer.next;
             cur = cur.next;
         } else if (onePointer.val <= twoPointer.val) {
-          cur.next = new ListNode(onePointer.val);
-          onePointer = onePointer.next;
-          cur = cur.next;
+            cur.next = new ListNode(onePointer.val);
+            onePointer = onePointer.next;
+            cur = cur.next;
         } else if (onePointer.val > twoPointer.val) {
-          cur.next = new ListNode(twoPointer.val);
-          twoPointer = twoPointer.next;
-          cur = cur.next;
+            cur.next = new ListNode(twoPointer.val);
+            twoPointer = twoPointer.next;
+            cur = cur.next;
         }
     }
 
