@@ -24,28 +24,32 @@ function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode
     // (1)_null (2)_null 이면 리턴
 
     const mergedList = new ListNode();
-    let cur = mergedList; // 참조용
-    let onePointer = list1; // 참조용
-    let twoPointer = list2; // 참조용
+    let cur = mergedList;
+    let onePointer = list1;
+    let twoPointer = list2;
 
-    while(onePointer !== null || twoPointer !== null) {
-        if (onePointer === null && twoPointer) {
-            cur.next = new ListNode(twoPointer.val);
-            twoPointer = twoPointer.next;
-            cur = cur.next;
-        } else if (twoPointer === null && onePointer) {
+    while(onePointer && twoPointer) {
+        if (onePointer.val <= twoPointer.val) {
             cur.next = new ListNode(onePointer.val);
             onePointer = onePointer.next;
-            cur = cur.next;
-        } else if (onePointer.val <= twoPointer.val) {
-            cur.next = new ListNode(onePointer.val);
-            onePointer = onePointer.next;
-            cur = cur.next;
-        } else if (onePointer.val > twoPointer.val) {
+        } else {
             cur.next = new ListNode(twoPointer.val);
             twoPointer = twoPointer.next;
-            cur = cur.next;
         }
+
+        cur = cur.next;
+    }
+
+    while(onePointer) {
+        cur.next = new ListNode(onePointer.val);
+        onePointer = onePointer.next;
+        cur = cur.next;
+    }
+
+    while(twoPointer) {
+        cur.next = new ListNode(twoPointer.val);
+        twoPointer = twoPointer.next;
+        cur = cur.next;
     }
 
     return mergedList.next;
