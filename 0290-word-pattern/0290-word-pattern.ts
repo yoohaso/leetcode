@@ -11,7 +11,7 @@ function wordPattern(pattern: string, s: string): boolean {
         if (!patternToWord.has(pattern[i]) && !wordToPattern.has(words[i])) {
             patternToWord.set(pattern[i], words[i]);
             wordToPattern.set(words[i], pattern[i]);
-        } else if (patternToWord.get(pattern[i]) !== words[i] || pattern[i] !== wordToPattern.get(words[i])) {
+        } else if (patternToWord.get(pattern[i]) !== words[i]) {
             return false;
         }
     }
