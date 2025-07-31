@@ -1,18 +1,21 @@
 function longestConsecutive(nums: number[]): number {
+    nums.sort((a, b) => a - b);
     const numsSet = new Set(nums);
-    
-    // 하나 작거나 하나 큰 수가 있으면 두고, 없으면 제거
-    for (const num of numsSet) {
-        if (numsSet.size === 1) {
-            return 1;
-        }
+    let count = 1;
+    let result = 0;
 
-        if (numsSet.has(num + 1) || numsSet.has(num - 1)) {
-            continue;
+    if (numsSet.size === 1) {
+        return 1;
+    }
+    
+    for (const num of numsSet) {
+        if (!numsSet.has(num + 1)) {
+            result = Math.max(count, result);
+            count = 1;
         } else {
-            numsSet.delete(num);
+            count++;
         }
     }
 
-    return numsSet.size;
+    return result;
 };
